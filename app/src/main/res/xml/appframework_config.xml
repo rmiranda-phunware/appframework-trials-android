@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="core.webservice_base_url">http://solutions-ws.phunware.com/CoreWS/</string>
+
+    <string name="core.application_uuid">a2ee1329-3aae-431b-a408-46aa9ee5ce0d</string>
+
+    <!-- MaaS -->
+    <integer name="core.maas_application_id">1268</integer>
+    <string name="core.maas_access_key">0db8f29b299acacd70d7a2caed0519e937574179</string>
+    <string name="core.maas_signature_key">126de3428bc3dd101db9a2f4c2c7b67705c0877a</string>
+    <string name="core.maas_encryption_key"></string>
+    <string name="core.maas_application_name">AF Trials</string>
+
+    <bool name="core.download_first_property">false</bool>
+    <bool name="directory.search_enable">true</bool>
+    <bool name="render.show_unsupported_content">true</bool>
+
+    <!-- map module -->
+    <string name="map.building_ids"><!-- Your MaaS Building IDs Go Here --></string>
+    <string name="map.floor_ids"><!-- Your MaaS Floor IDs Go Here --></string>
+    <string name="map.mapping_types">Normal,Hybrid,Satellite,None</string>
+
+    <float name="map.zoom_level_default">19</float>
+    <float name="map.zoom_poi_focus">30</float>
+    <string name="map.default_location_provider">SENION</string>
+
+    <string name="map.mse_venue_uuid"><!-- Your MSE Venue UUID Goes Here --></string>
+    <string name="map.senion_customer_id"><!-- Your Senion Customer ID Goes Here --></string>
+    <string name="map.senion_map_id"><!-- Your Senion Map ID Goes Here --></string>
+</resources>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="core.webservice_base_url">http://solutions-ws.phunware.com/CoreWS/</string>
+    <string name="core.s3_url">https://solutions-db.phunware.com</string>
+
+    <!-- templates/generic S3 -->
+    <string name="core.application_uuid">641ff049-cf7e-4401-a72a-0ea1938d45df</string>
+    <bool name="core.download_first_property">true</bool>
+
+
+    <!-- templates/generic -->
+    <!--<string name="core.application_uuid">0eb8f96c-c7ef-4270-9267-a874cb605562</string>-->
+    <!--<bool name="core.download_first_property">true</bool>-->
+
+
+    <!-- MaaS -->
+    <integer name="core.maas_application_id">1175</integer>
+    <string name="core.maas_access_key">309cc7d9e6fe2c2252023d8eedc10e0ed00272b3</string>
+    <string name="core.maas_signature_key">dbef879538b734ca5b87e7e8cf7b8e14d25adacd</string>
+    <string name="core.maas_encryption_key"></string>
+    <string name="core.maas_container_id">55088f4cd325e6b80a0007c7</string>
+    <string name="core.maas_application_name">PhunGeneric</string>
+    <bool name="core.download_first_property">false</bool>
+
+    <bool name="directory.search_enable">true</bool>
+    <bool name="render.show_unsupported_content">true</bool>
+
+    <!-- map module -->
+    <string name="map.building_ids">17498</string>
+    <string name="map.floor_ids">102950</string>
+    <string name="map.mapping_types">Normal,Hybrid,Satellite,None</string>
+</resources>

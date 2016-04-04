@@ -1,0 +1,119 @@
+apply plugin: 'com.android.application'
+apply plugin: 'brandme'
+apply plugin: 'io.fabric'
+
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            credentials {
+                username 'phunware-services'
+                password 'ph00sba11'
+            }
+            url 'https://nexus.phunware.com/content/groups/phunware-services-group/'
+        }
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        //Required to be loaded first for brandme plugin to change behavior based on Gradle version.
+        classpath 'com.android.tools.build:gradle:1.0.0'
+        classpath 'com.phunware.brandme.gradle:brandme-gradle-jenkins:0.0.+'
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://maven.fabric.io/public' }
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId 'com.phunware.appframework.sample.generic'
+        minSdkVersion 14
+        targetSdkVersion 21
+        versionCode 1
+        versionName "1.0"
+
+        // add this to set a unique authority for the VSC content provider
+        // based on your applicationId
+        resValue "string", "appframe__core__authority", "${applicationId}.core"
+    }
+
+    signingConfigs {
+        playstore {
+            keyAlias 'phunware'
+            keyPassword 'phunware'
+            storeFile file('../template_release.keystore')
+            storePassword 'phunware'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+    buildTypes {
+        // @npike
+        // Commenting this out for now, because it prevents BuildConfigUtils from discovering
+        // if the application is a debug build or not.
+//        debug {
+//            applicationIdSuffix '.dev'
+//        }
+        stage.initWith(buildTypes.debug)
+        stage {
+            applicationIdSuffix '.stage'
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.playstore
+        }
+    }
+    productFlavors {
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
+}
+
+dependencies {
+    // 3rd party dependencies
+    compile 'commons-io:commons-io:2.4'
+    compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
+        transitive = true;
+    }
+
+    // Google dependencies
+    compile 'com.google.android.gms:play-services-location:6.5.87'
+
+    // appframework dependencies
+    def appFrameworkVersion = "4.0.0"
+
+    compile("com.phunware.appframework:appframe-core:${appFrameworkVersion}@aar") {
+        transitive = true
+    }
+    compile "com.phunware.appframework:appframe-render:${appFrameworkVersion}"
+    compile "com.phunware.appframework:appframe-directory:${appFrameworkVersion}"
+    compile "com.phunware.appframework:appframe-flight:${appFrameworkVersion}"
+    compile "com.phunware.appframework:appframe-events:${appFrameworkVersion}"
+    compile "com.phunware.appframework:appframe-locationmarketing:${appFrameworkVersion}@aar"
+    compile "com.phunware.appframework:appframe-parking:${appFrameworkVersion}"
+    compile("com.phunware.appframework:appframe-map:${appFrameworkVersion}@aar") {
+        transitive = true
+        exclude group: 'com.phunware.mapping'
+    }
+    compile('com.phunware.mapping:MappingLibrary:2.5.1@aar') {
+        transitive = false
+        exclude group: '*'
+    }
+}

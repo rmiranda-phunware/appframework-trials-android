@@ -1,0 +1,10 @@
+http://commons.apache.org/
+https://github.com/square/okhttp
+https://github.com/square/picasso
+https://github.com/square/retrofit
+http://source.android.com/
+http://developer.android.com/tools/extras/support-library.html
+http://www.crashlytics.com/blog/crashlytics-enterprise-is-now-free/
+https://code.google.com/p/google-gson/
+https://github.com/square/leakcanary
+https://github.com/nispok/snackbar

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="grey">#515151</color>
+    <color name="pw_blue">#007eff</color>
+    <color name="appframe__colorPrimary">#2f2f2f</color>
+    <color name="appframe__colorAccent">@color/pw_blue</color>
+    <color name="appframe__colorPrimaryDark">#2f2f2f</color>
+    <color name="appframe__textColorPrimary">@android:color/black</color>
+    <color name="appframe__textColorSecondary">@android:color/black</color>
+    <color name="appframe__windowBackground">#ffffff</color>
+    <color name="appframe__colorBackground">#ffffff</color>
+</resources>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="com.phunware.appframework.sample.generic"
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- for now requiring the C2D_MESSAGE permissions to be at the application level until this bug is fixed -->
+    <!-- https://code.google.com/p/android/issues/detail?id=76504 -->
+    <!--
+    Creates a custom permission so only this app can receive its messages.
+    NOTE: The permission must be called PACKAGE.permission.C2D_MESSAGE,
+    where PACKAGE is the application's package name.
+    -->
+    <permission
+        android:name="${applicationId}.permission.C2D_MESSAGE"
+        android:protectionLevel="signature"/>
+
+    <uses-permission android:name="${applicationId}.permission.C2D_MESSAGE"/>
+
+    <application
+        android:name="com.phunware.appframework.sample.generic.BasicApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon">
+        <activity
+            android:name="com.phunware.appframework.sample.generic.activity.SplashActivity"
+            android:label="@string/app_name"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data android:scheme="phungeneric"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.phunware.appframework.sample.generic.activity.MainActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/app_name"></activity>
+
+        <activity
+            android:name="com.phunware.appframework.locationmarketing.activity.LMMessageDetailActivity"
+            android:label="@string/appframe__locationmarketing__offer_details">
+            <intent-filter>
+                <action android:name="com.digby.mm.android.library.Notifications.engageme"/>
+                <!--change <brand_name> by digby_brandCode variable on app_settings.xml-->
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="campaign"/>
+            </intent-filter>
+        </activity>
+
+        <!-- LocalPoint receivers -->
+        <!-- Required so that the Localpoint SDK can register for GCM push notifications and receive them -->
+        <receiver
+            android:name="com.digby.mm.android.library.receivers.impl.DigbyGCMBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
+
+                <category android:name="${applicationId}"/>
+            </intent-filter>
+        </receiver>
+        <!-- Required to properly handle location movements -->
+        <receiver android:name="com.digby.mm.android.library.receivers.LocationProviderChangedReceiver">
+            <intent-filter>
+                <action android:name="android.location.PROVIDERS_CHANGED"/>
+                <action android:name="providerEnabled"/>
+
+                <category android:name="${applicationId}"/>
+            </intent-filter>
+        </receiver>
+
+        <!--  BroadcastReceiver that will receive intents from GCM
+                     services and handle them to the custom IntentService.
+                     The com.google.android.c2dm.permission.SEND permission is necessary
+                     so only GCM services can send data messages for the app. -->
+        <receiver
+            android:name="com.phunware.appframework.core.receiver.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <!-- Receives the actual messages. -->
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+                <!-- Receives the Registration ID. -->
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
+                <!-- Your Package Name Here -->
+                <category android:name="${applicationId}"/>
+            </intent-filter>
+        </receiver>
+
+        <meta-data
+            android:name="digby_appId"
+            android:value="1f170126-0772-44ea-bec5-8da3e05cfe55"/>
+        <meta-data
+            android:name="digby_brandCode"
+            android:value="engageme"/>
+        <meta-data
+            android:name="digby_searchRadius_meters"
+            android:value="50000"/>
+        <meta-data
+            android:name="digby_server"
+            android:value="sandbox"/>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="b8127086af392cb1b73dc00a7387bb7a0856138f"/>
+    </application>
+
+</manifest>

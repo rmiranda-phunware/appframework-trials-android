@@ -1,0 +1,1 @@
+A template application to showcase AppFramework 4.0 features.

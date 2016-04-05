@@ -27,6 +27,7 @@ import com.phunware.appframework.render.util.ParcelableSparseArray;
 import com.phunware.appframework.render.view.Button;
 import com.phunware.appframework.sample.generic.directorymodule.CustomAppBuilderDirectoryModule;
 import com.phunware.appframework.sample.generic.directorymodule.fragment.CustomDirectoryListFragment;
+import com.phunware.appframework.sample.generic.fragment.LocalAttractionsFragment;
 import com.phunware.core.PwLog;
 
 import io.fabric.sdk.android.Fabric;
@@ -44,6 +45,7 @@ public class BasicApplication extends AppFrameworkApplication {
     public static final int BUTTON_TYPE_PARKING = 32;
     public static final int BUTTON_TYPE_SETTINGS = 70;
     public static final int BUTTON_TYPE_POINT_OF_INTEREST = 29;
+    public static final int BUTTON_TYPE_LOCAL_ATTRACTIONS = 113;
 
     @Override
     public int onInitializeApplication() {
@@ -90,6 +92,8 @@ public class BasicApplication extends AppFrameworkApplication {
                     onHandleNewFragment(new SettingsDialogFragment(), "frag_setting");
                 } else if (buttonType == BUTTON_TYPE_POINT_OF_INTEREST) {
                     onHandleNewFragment(MapDirectoryInfoFragment.getInstance(null, 0, true, false), "frag_poi");
+                } else if (buttonType == BUTTON_TYPE_LOCAL_ATTRACTIONS) {
+                    onHandleNewFragment(LocalAttractionsFragment.getInstance(), "frag_local_attractions");
                 }
             }
         };

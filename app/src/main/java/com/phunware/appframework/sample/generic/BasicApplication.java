@@ -10,7 +10,6 @@ import com.crashlytics.android.Crashlytics;
 import com.phunware.appframework.core.AppFrameworkApplication;
 import com.phunware.appframework.core.bootstrap.appbuilder.AppBuilderBootstrapSource;
 import com.phunware.appframework.core.util.LogWrap;
-import com.phunware.appframework.directory.fragment.DirectoryListFragment;
 import com.phunware.appframework.events.EventsModule;
 import com.phunware.appframework.events.fragment.EventsListFragment;
 import com.phunware.appframework.locationmarketing.LocationMarketingModule;
@@ -27,6 +26,7 @@ import com.phunware.appframework.render.util.OrderEnabledLocalBroadcastManager;
 import com.phunware.appframework.render.util.ParcelableSparseArray;
 import com.phunware.appframework.render.view.Button;
 import com.phunware.appframework.sample.generic.directorymodule.CustomAppBuilderDirectoryModule;
+import com.phunware.appframework.sample.generic.directorymodule.fragment.CustomDirectoryListFragment;
 import com.phunware.core.PwLog;
 
 import io.fabric.sdk.android.Fabric;
@@ -71,9 +71,9 @@ public class BasicApplication extends AppFrameworkApplication {
                     Fragment directoryListFragment;
                     String directoryCategory = (String) buttonArgs.get(Button.BUTTON_ARG_1);
                     if (!TextUtils.isEmpty(directoryCategory)) {
-                        directoryListFragment = DirectoryListFragment.getInstance(directoryCategory);
+                        directoryListFragment = CustomDirectoryListFragment.getInstance(directoryCategory);
                     } else {
-                        directoryListFragment = DirectoryListFragment.getInstance();
+                        directoryListFragment = CustomDirectoryListFragment.getInstance();
                     }
                     onHandleNewFragment(directoryListFragment, "frag_directory_list");
                 } else if (buttonType == BUTTON_TYPE_MAPPING) {

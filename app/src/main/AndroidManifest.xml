@@ -58,6 +58,11 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".directorymodule.activity.CustomDirectoryDetailsActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/appframe__directory__title_activity_directory_details"/>
+
         <!-- LocalPoint receivers -->
         <!-- Required so that the Localpoint SDK can register for GCM push notifications and receive them -->
         <receiver

@@ -13,4 +13,10 @@
     <string-array name="building_names">
         <item>Building Name 1</item>
     </string-array>
+
+    <!--Local Attractions-->
+    <string name="local_attractions_title">Local Attractions</string>
+    <string name="geo_api_key">AIzaSyDlnJw751rIexppIfqcyD1_pwoqLf__qcc</string>
+
+
 </resources>

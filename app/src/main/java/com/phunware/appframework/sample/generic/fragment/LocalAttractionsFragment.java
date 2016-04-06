@@ -18,6 +18,7 @@ import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.AutocompleteFilter;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
+import com.phunware.appframework.core.analytics.AnalyticsManager;
 import com.phunware.appframework.core.view.FontButton;
 import com.phunware.appframework.sample.generic.R;
 
@@ -25,6 +26,7 @@ import com.phunware.appframework.sample.generic.R;
  * Created by rodrigomiranda on 5/4/16.
  */
 public class LocalAttractionsFragment extends Fragment {
+    public static final String ANALYTICS_TAG_LOCAL_ATTRACTIONS_FRAGMENT = "localAttractions";
     public static final int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1000;
     public static final String TAG = LocalAttractionsFragment.class.getName();
 
@@ -58,7 +60,7 @@ public class LocalAttractionsFragment extends Fragment {
                     .build();
 
             Intent intent =
-                    new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_OVERLAY)
+                    new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN)
                             .setFilter(typeFilter)
                             .build(getActivity());
             startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
@@ -85,5 +87,22 @@ public class LocalAttractionsFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        AnalyticsManager.getInstance().onScreenViewed(ANALYTICS_TAG_LOCAL_ATTRACTIONS_FRAGMENT);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        AnalyticsManager.getInstance().startTimedEvent(ANALYTICS_TAG_LOCAL_ATTRACTIONS_FRAGMENT);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        AnalyticsManager.getInstance().stopTimedEvent(ANALYTICS_TAG_LOCAL_ATTRACTIONS_FRAGMENT);
+    }
 
 }
